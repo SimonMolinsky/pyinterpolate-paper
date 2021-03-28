@@ -24,7 +24,7 @@ Spatial Interpolation techniques are used to interpolate values at unknown locat
 
 # Statement of need
 
-Pyinterpolate is a Python package for spatial interpolation and it is designed to perform predictions from point measurements and areal aggregates of different sizes and shapes. Pyinterpolate automates tasks performed by spatial statisticians, it helps with data exploration, semivariogram estimation and kriging predictions. Thing which makes Pyinterpolate different from other spatial interpolation packages is an ability to perform Kriging of areas of different shapes and sizes which is extremely important in the context of social, medical and ecological sciences.
+Pyinterpolate is a Python package for spatial interpolation and it is designed to perform predictions from point measurements and areal aggregates of different sizes and shapes. Pyinterpolate automates tasks performed by spatial statisticians, it helps with data exploration, semivariogram estimation and kriging predictions. Thing that makes Pyinterpolate different from other spatial interpolation packages is the ability to perform Kriging of areas of different shapes and sizes and this type of operation is extremely important in the context of social, medical and ecological sciences.
 
 ## Why is areal interpolation important?
 
