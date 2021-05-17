@@ -52,6 +52,10 @@ Package performs five types of spatial interpolation:
 
 Point observation analysis requires manual or automatic semivariogram fitting to predict missing values. Areal analysis requires additional steps of semivariogram deconvolution and/or areal centroids calculation. Package performs those steps automatically. Users have options to control prediction flow. Package was initially developed for epidemiological study, where areal aggregates of infections were transformed to point support population-at-risk maps and multiple potential applications follow this algorithm. Initial field of study (epidemiology) was the reason behind automation of many tasks related to the data modeling. It is assumed that users without wide geostatistical background may use Pyinterpolate for spatial data modeling and analysis, especially users which are observing processes related to the human population.
 
+The main algorithm of the package and the main difference from the other software packages is a Kriging of areal counts to interpolate point-support map. The example of a process is presented in the \autoref{fig1}.
+
+![Structure of Pyinterpolate package.\label{fig1}](fig1_example.png)
+
 # Spatial Interpolation with Kriging
 
 Kriging, which is the baseline of the Pyinterpolate package, is an estimation method that gives the best unbiased linear estimates of point values or block averages [@Armstrong:1998]. Kriging minimizes variance of a dataset with missing values. Baseline technique is the **Ordinary Kriging** where value at unknown location $\hat{z}$ is estimated as a linear combination of $K$ neighbors with value $z$ and weights $\lambda$ assigned to those neighbors (1).
@@ -126,15 +130,13 @@ Table 1: *Kriging types implemented in the pyinterpolate package*
 | **Area-to-Area Poisson Kriging** | Polygons with rates, points within areas with rates denominator counts and deconvoluted semivariogram model | *[predicted value for area, error of variance, given mean, weights array]* | read areal data and point data - perform semivariogram deconvolution - interpolate areal rates | Filtering and smoothing choropleth maps |
 | **Area-to-Point Poisson Kriging** | Polygons with rates, points within areas with rates denominator counts and deconvoluted semivariogram model | *[predicted value for point within area, error of variance, given mean, weights array, point coordinates]* | read areal data and point data - perform semivariogram deconvolution - interpolate point within area rates | Change of spatial support of analyzed areal rates |
 
-Users start with semivariogram exploration and modeling. Next researcher or algorithm chooses the theoretical model which best fits the semivariogram. This model is used to predict values at unknown locations. Areal data interpolation, especially transformation from areal aggregates into point support maps, requires deconvolution of areal semivariogram (\autoref{fig5} shows outputs of this process). This is an automatic process which can be performed without prior knowledge of kriging and spatial statistics. The last step is Kriging itself. Poisson Kriging is especially useful for counts over areas. On the other spectrum is Ordinary Kriging which is an universal technique which works well with multiple point data sources. Predicted data is stored as a DataFrame known from the *Pandas* and *GeoPandas* Python packages. Pyinterpolate allows users to transform given point data into a regular numpy array grid for visualization purposes and to perform large-scale comparison of different kriging techniques prediction output.
-
-\autoref{fig7} is a comparison of a choropleth map before the semivariogram regularization and point support map after transformation with Area-to-Point Poisson Kriging.
+Users start with semivariogram exploration and modeling. Next researcher or algorithm chooses the theoretical model which best fits the semivariogram. This model is used to predict values at unknown locations. Areal data interpolation, especially transformation from areal aggregates into point support maps, requires deconvolution of areal semivariogram. This is an automatic process which can be performed without prior knowledge of kriging and spatial statistics. The last step is Kriging itself. Poisson Kriging is especially useful for counts over areas. On the other spectrum is Ordinary Kriging which is an universal technique which works well with multiple point data sources. Predicted data is stored as a DataFrame known from the *Pandas* and *GeoPandas* Python packages. Pyinterpolate allows users to transform given point data into a regular numpy array grid for visualization purposes and to perform large-scale comparison of different kriging techniques prediction output. Use case with the whole scenario is available in the ![paper package repository](https://github.com/szymon-datalions/pyinterpolate-paper).
 
 ## Modules
 
-Pyinterpolate is designed from seven modules and they cover all operations needed to perform spatial interpolation: from input/output operations, data processing and transformation, semivariogram fit to kriging interpolation. \autoref{fig1} shows package structure.
+Pyinterpolate is designed from seven modules and they cover all operations needed to perform spatial interpolation: from input/output operations, data processing and transformation, semivariogram fit to kriging interpolation. \autoref{fig2} shows package structure.
 
-![Structure of Pyinterpolate package.\label{fig1}](fig1.png)
+![Structure of Pyinterpolate package.\label{fig2}](fig2_modules.png)
 
 Modules follow typical data processing and modeling steps. The first module is **io_ops** which reads point data from text files and areal or point data from shapefiles, then changes data structure for further processing. **Transform** module is responsible for all tasks related to changes in data structure during program execution. Sample tasks are:
 
@@ -162,14 +164,12 @@ The most similar and most important package from Python environment is **PyKrige
 
 **PySAL** is next GIS / geospatial package which can be used to interpolate missing values – but this time at areal scale. Package’s **tobler** module can be used to interpolate areal values of specific variable at different scales and sizes of support [@eli_knaap_2020_4385980]. Moreover, package has functions for multisource regression, where raster data is used as auxiliary information to enhance interpolation results. Conceptually tobler package is close to the Pyinterpolate, where main algorithm transforms areal data into point support derived from auxiliary variable.
 
-**R programming language** offers **gstat** package for spatial interpolation and spatial modeling [@PEBESMA2004683]. Package is designed for variogram modelling, simple, ordinary and universal point or block kriging (with drift), spatio-temporal kriging and sequential Gaussian (co)simulation. Gstat is a solid package for Kriging and spatial interpolation and has the largest number of methods to perform spatial modelling. The main difference between gstat and Pyinterpolate is availability of area-to-point Poisson Kriging based on the algorithm proposed by Goovaerts [@Goovaerts:2007] in Pyinterpolate package.
-
-
-
+**R programming language** offers **gstat** package for spatial interpolation and spatial modeling [@PEBESMA2004683]. Package is designed for variogram modelling, simple, ordinary and universal point or block kriging (with drift), spatio-temporal kriging and sequential Gaussian (co)simulation. Gstat is a solid package for Kriging and spatial interpolation and has the largest number of methods to perform spatial modelling. The main difference between gstat and Pyinterpolate is availability of area-to-point Poisson Kriging based on the algorithm proposed by Goovaerts [@Goovaerts:2007] in Pyinterpolate package. Comparison to **gstat** is available in the [paper repository](https://github.com/szymon-datalions/pyinterpolate-paper).
 
 # Appendix\label{appendix}
 
-1. [**Example and data repository**](https://github.com/szymon-datalions/pyinterpolate-paper)
+1. [**Paper repository** with additional materials](https://github.com/szymon-datalions/pyinterpolate-paper)
+2. [**Package repository**](https://github.com/szymon-datalions/pyinterpolate)
 
 # References
 
