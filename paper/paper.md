@@ -41,7 +41,7 @@ Alternatively to the Area-to-Area and Area-to-Point Poisson Kriging, researchers
 
 # Methodology
 
-The chapter presents the general calculations methodology within a package. The document [here](https://github.com/szymon-datalions/pyinterpolate-paper/blob/main/paper/supplementary%20materials/example_use_case.md) presents an example use-case. Then document [here](https://github.com/szymon-datalions/pyinterpolate-paper/blob/main/paper/supplementary%20materials/comparison_to_gstat.md) is a comparison of the Ordinary Kriging algorithms between **gstat** package and **Pyinterpolate**.
+The chapter presents the general calculations methodology within a package. The document [here](https://github.com/SimonMolinsky/pyinterpolate-paper/blob/main/paper/supplementary%20materials/example_use_case.md) presents an example use-case. Then document [here](https://github.com/SimonMolinsky/pyinterpolate-paper/blob/main/paper/supplementary%20materials/comparison_to_gstat.md) is a comparison of the Ordinary Kriging algorithms between **gstat** package and **Pyinterpolate**.
 
 ## Spatial Interpolation with Kriging
 
@@ -160,12 +160,12 @@ The most similar and significant package from the Python environment is **PyKrig
 
 **PySAL** is the next GIS / geospatial package that is used for spatial interpolation. However, **PySAL** is built upon the spatial graph analysis algorithms. Package’s (sub-module) for areal analysis is **tobler** [@eli_knaap_2020_4385980]. Moreover, the package has functions for multisource regression, where raster data is used as auxiliary information to enhance interpolation results.
 
-**R programming language** offers **gstat** package for spatial interpolation and spatial modeling [@PEBESMA2004683]. The package is designed for variogram modeling, simple, ordinary and universal point or block kriging (with drift), spatio-temporal kriging and sequential Gaussian (co)simulation. Gstat is a solid Kriging and spatial interpolation package and has the largest number of methods to perform spatial modeling. The main difference between **gstat** and **Pyinterpolate** is the availability of area-to-point Poisson Kriging in the latter and the difference between baseline programming languages [@Goovaerts:2007]. The functional comparison to **gstat** is available in the [paper repository](https://github.com/szymon-datalions/pyinterpolate-paper).
+**R programming language** offers **gstat** package for spatial interpolation and spatial modeling [@PEBESMA2004683]. The package is designed for variogram modeling, simple, ordinary and universal point or block kriging (with drift), spatio-temporal kriging and sequential Gaussian (co)simulation. Gstat is a solid Kriging and spatial interpolation package and has the largest number of methods to perform spatial modeling. The main difference between **gstat** and **Pyinterpolate** is the availability of area-to-point Poisson Kriging in the latter and the difference between baseline programming languages [@Goovaerts:2007]. The functional comparison to **gstat** is available in the [paper repository](https://github.com/SimonMolinsky/pyinterpolate-paper).
 
 # Appendix\label{appendix}
 
-1. [**Paper repository** with additional materials](https://github.com/szymon-datalions/pyinterpolate-paper)
-2. [**Package repository**](https://github.com/szymon-datalions/pyinterpolate)
+1. [**Paper repository** with additional materials](https://github.com/SimonMolinsky/pyinterpolate-paper)
+2. [**Package repository**](https://github.com/DataverseLabs/pyinterpolate)
 3. [**Automatic fit of semivariogram within the package**](https://pyinterpolate.readthedocs.io/en/latest/algorithms_documentation/Automatic%20Fitting%20of%20the%20Semivariogram%20Model.html)
 4. [**Outliers Detection within the package**](https://pyinterpolate.readthedocs.io/en/latest/algorithms_documentation/Outliers%20Removal.html)
 

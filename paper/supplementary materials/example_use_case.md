@@ -6,7 +6,7 @@ This appendix to the paper presents sample pipeline of analysis. It is presented
 
 Breast cancer rates are taken from the *Incidence Rate Report for U.S.* counties and were clipped to the counties of the Northeastern part of U.S. [1]. Observations are age-adjusted and multiplied by 100,000 for the period 2013-2017.
 
-Population centroids are retrieved from the *U.S. Census Blocks 2010* [2]. Breast cancer affects only females but for this example the whole population for an area was included. Raw and transformed datasets are available in a [dedicated Github repository](https://github.com/szymon-datalions/pyinterpolate-paper/tree/main/paper-examples/example-use-case).
+Population centroids are retrieved from the *U.S. Census Blocks 2010* [2]. Breast cancer affects only females but for this example the whole population for an area was included. Raw and transformed datasets are available in a [dedicated Github repository](https://github.com/SimonMolinsky/pyinterpolate-paper/tree/main/paper-examples/example-use-case).
 
 Presented work is Area-to-Point Poisson Kriging of Breast Cancer areal aggregates dataset and transformation of those areal aggregates into population-specific blocks (points). This process requires two main steps: **semivariogram regularization** and **Poisson Kriging**.
 
