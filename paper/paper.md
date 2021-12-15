@@ -10,10 +10,6 @@ tags:
 authors:
   - name: Szymon Moliński
     orcid: 0000-0003-3525-2104
-    affiliation: 1
-affiliations:
-  - name: Data Lions company, Poland, https://datalions.eu
-    index: 1
 date: 20 October 2020
 bibliography: paper.bib
 ---
@@ -56,16 +52,16 @@ The primary technique is the Ordinary Kriging. The value at unknown location $\h
 
 Weights $\lambda$ are a solution of following system of linear equations (2):
 
-(2) $$\sum_{j=1}\lambda_{j} C(x_{i}, x_{j}) - \mu = \bar{C}(x_{i}, V); i=1, 2, ..., K$$ $$\sum_{i}\lambda_{i} = 1$$
+(2) $$\sum_{j=1}^{K}\lambda_{j} C(x_{i}, x_{j}) - \mu = \bar{C}(x_{i}, V); i=1, 2, ..., K$$ $$\sum_{i}^{K}\lambda_{i} = 1$$
 
-where $C(x_{i}, x_{j})$ is a covariance between points $x_{i}$ and $x_{j}$, $\bar{C}(x_{i}, V)$ is an average covariance between point $x_{i}$ and all other points in a group ($K$ points) and $\mu$ is a process mean. The same system may be solved with semivariance instead of covariance (3):
+where $C(x_{i}, x_{j})$ is a covariance between points $x_{i}$ and $x_{j}$, $\bar{C}(x_{i}, V)$ is an average covariance between point $x_{i}$ and all other points in a group ($K$ points) and $\mu$ is the Lagrange multiplier. The same system may be solved with semivariance instead of covariance (3):
 
-(3) $$\sum_{i=1}\lambda_{j} \gamma(x_{i}, x_{j}) + \mu = \bar{\gamma}(x_{i}, V); i=1, 2, ..., K$$ $$\sum_{i}\lambda_{i} = 1$$
+(3) $$\sum_{i=1}^{K}\lambda_{j} \gamma(x_{i}, x_{j}) + \mu = \bar{\gamma}(x_{i}, V); i=1, 2, ..., K$$ $$\sum_{i}^{K}\lambda_{i} = 1$$
 
 where $\gamma(x_{i}, x_{j})$ is a semivariance between points $x_{i}$ and $x_{j}$, $\bar{\gamma}(x_{i}, V)$ is an average semivariance between point $x_{i}$ and all other points.
-Semivariance is a key concept of spatial interpolation. It is a measure of dissimilarity between observations in a function of distance. Equation (4) is an experimental semivariogram estimation formula.
+Semivariance is a key concept of spatial interpolation. It is a measure of dissimilarity between observations in a function of distance. Equation (4) is an experimental semivariogram estimation formula and $\gamma_{h}$ is an experimental semivariance at lag $h$:
 
-(4) $$\frac{1}{2N}\sum_{i}^{N}(z_{(x_{i} + h)} - z_{x_{i}})^{2}$$
+(4) $$\gamma_{h} = \frac{1}{2N}\sum_{i}^{N}(z_{(x_{i} + h)} - z_{x_{i}})^{2}$$
 
 where $z_{x_{i}}$ is a value at location $x_{i}$ and $z_{(x_{i} + h)}$ is a value at a translated location in a distance $h$ from $x_{i}$.
 
@@ -75,7 +71,7 @@ Pyinterpolate package implements linear, spherical, exponential and Gaussian mod
 
 (5) $$\hat{z} = R + \mu$$
 
-where $\mu$ is a process mean and $R$ is a residual at a specific location. The residual value is derived as the first element (denoted as $\boldsymbol{1}$) from:
+where $\mu$ is a Lagrange multiplier and $R$ is a residual at a specific location. The residual value is derived as the first element (denoted as $\boldsymbol{1}$) from:
 
 (6) $$R = ((Z - \mu) \times \lambda)\boldsymbol{1}$$
 
@@ -97,7 +93,7 @@ Users may use three types of Poisson Kriging procedure: Centroid-based Poisson K
 4. **Area-to-Area Poisson Kriging** is used for areal interpolation and filtering. If point support varies over an area, it will appear in the analysis. The model can catch this variation.
 5. **Area-to-Point Poisson Kriging**. Areal support is deconvoluted in regards to the point support. Output map has a spatial resolution of the point support while coherence of analysis is preserved (sum of rates is equal to the output of Area-to-Area Poisson Kriging). It is used for point-support interpolation and data filtering.
 
-The user starts with semivariogram exploration and modeling. Next, the researcher or algorithm chooses the theoretical model which best fits the semivariogram. If this is done automatically, the algorithm tests linear, spherical and exponential models with different ranges and the constant sill against the experimental curve. Model performance is measured by the root mean squared error between the tested theoretical model with the experimental semivariance. 
+The user starts with semivariogram exploration and modeling. Next, the researcher or algorithm chooses the theoretical model which best fits the semivariogram. If this is done automatically, the algorithm tests linear, spherical and exponential models with different sills and ranges and the constant nugget against the experimental curve. Model performance is measured by the root mean squared error between the tested theoretical model with the experimental semivariance. 
 
 Areal data interpolation, especially transformation from areal aggregates into point support maps, requires deconvolution of areal semivariogram. Users may do it without prior knowledge of kriging and spatial statistics because this operation is automated. The iterative procedure of the semivariogram regularization is described in detail in [@Goovaerts:2007]. The last step of analysis is a solution of linear Kriging equations.
 
